@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 type About = {
   name: string,
@@ -22,10 +23,10 @@ const Home = ({ about }: HomeProps) => {
         <div className='text-9xl py-5 font-bold cursor-default'>
           {about.name.toUpperCase()}
         </div>
-        <div>
+        <div className='text-3xl'>
           {about.title}
         </div>
-        <div>
+        <div className='py-10 w-3/5 text-justify'>
           {about.about}
         </div>
       </div>
@@ -34,7 +35,7 @@ const Home = ({ about }: HomeProps) => {
 };
 
 export const getStaticProps: GetStaticProps<{ about: About }> = async () => {
-  const res = await fetch('http://localhost:3000/api/about');
+  const res = await fetch(`http://localhost:3000/api/about`);
   const about = await res.json();
   return {
     props: {

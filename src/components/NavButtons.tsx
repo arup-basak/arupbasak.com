@@ -7,7 +7,13 @@ const NavButtons = (props: {
 }) => {
   return (
     <Link href={props.href}>
-        <div className='select-none m-14 p-2 w-fit transition hover:bg-red-500 cursor-pointer text-2xl'>
+        <div 
+          className={`styles.nav_buttons select-none m-14 p-2 px-10 w-fit transition
+                   hover:bg-gray-200 cursor-pointer text-2xl
+                    after:content-['→'] after:absolute after:opacity-0 hover:after:opacity-100 animate-slow-move
+                   `}
+          id='nav_buttons'
+          >
             {props.innerText.toUpperCase()}
         </div>
     </Link>

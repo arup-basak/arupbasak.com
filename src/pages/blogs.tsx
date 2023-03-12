@@ -2,7 +2,7 @@ import React from 'react'
 
 function blogs() {
   return (
-    <div>blogs</div>
+    <div>No Blogs Found</div>
   )
 }
 
