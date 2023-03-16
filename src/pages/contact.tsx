@@ -16,8 +16,8 @@ const contact = () => {
       <Head>
         <title>Connect with me</title>
       </Head>
-      <div className='grid grid-cols-[700px_1fr]'>
-        <div className='text-6xl py-5 font-bold cursor-default max-w-[500px] m-auto'>
+      <div className='desktop:grid desktop:grid-cols-[700px_1fr]'>
+        <div className='mobile:text-2xl desktop:text-6xl desktop:py-5 font-bold cursor-default max-w-[500px] m-auto'>
           CONNECT WITH ME
         </div>
         <div id="textarea" className='w-[100%]'>

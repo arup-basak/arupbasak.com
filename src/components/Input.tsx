@@ -34,7 +34,7 @@ class Input extends Component<InputProps, InputState> {
         <input
           type={type}
           id={id}
-          className={`h-10 p-8 peer bg-gray-100 outline-none w-full`}
+          className={`h-10 mobile:p-6 mobile:text-xl desktop:p-8 peer bg-gray-100 outline-none w-full`}
           value={value}
           required
           onChange={this.handleChange}

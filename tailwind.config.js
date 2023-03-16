@@ -24,9 +24,8 @@ module.exports = {
       }
     },
     screens: {
-      'mobile': '414px',
-      'tablet': '640px',
-      'desktop': '1280px'
+      'mobile': '0px',
+      'desktop': '450px'
     },
   },
   plugins: [],
