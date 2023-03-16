@@ -1,6 +1,6 @@
 import React from 'react'
 import NavButtons from './NavButtons'
-import SocialIcon  from './SocialIcon'
+import ImageIcon  from './ImageIcon'
 import github_logo from '/public/github-logo.png'
 import linkedin_logo from '/public/linkedin-logo.png'
 import instagram_logo from '/public/instagram-logo.png'
@@ -15,10 +15,10 @@ const NavBar = () => {
         <NavButtons innerText='contact' href='/contact'/>
       </div>
       <div className='flex flex-row justify-around m-10'>
-        <SocialIcon src={github_logo} href='https://github.com/arup-basak' alt='Github'/>
-        <SocialIcon src={linkedin_logo} href='https://www.linkedin.com/in/basak-arup/' alt='LinkidIn'/>
-        <SocialIcon src={instagram_logo} href='https://www.instagram.com/_arupbasak_/' alt='Instagram'/>
-        <SocialIcon src={twitter_logo} href='https://twitter.com/_arupbasak_' alt='Twitter'/>
+        <ImageIcon src={github_logo} href='https://github.com/arup-basak' alt='Github'/>
+        <ImageIcon src={linkedin_logo} href='https://www.linkedin.com/in/basak-arup/' alt='LinkidIn'/>
+        <ImageIcon src={instagram_logo} href='https://www.instagram.com/_arupbasak_/' alt='Instagram'/>
+        <ImageIcon src={twitter_logo} href='https://twitter.com/_arupbasak_' alt='Twitter'/>
       </div>
     </div>
   )

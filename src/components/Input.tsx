@@ -4,7 +4,7 @@ interface InputProps {
   id: string,
   placeholder: string,
   type?: "text" | "email",
-  value: string
+  value: string;
 }
 
 interface InputState {

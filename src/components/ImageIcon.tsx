@@ -2,7 +2,7 @@ import React from 'react'
 import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 
-const SocialIcon = (props: {
+const ImageIcon = (props: {
     src: StaticImageData,
     href: string,
     alt: string
@@ -17,4 +17,4 @@ const SocialIcon = (props: {
   )
 }
 
-export default SocialIcon
+export default ImageIcon
