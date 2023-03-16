@@ -13,21 +13,21 @@ interface ProjectProps {
 }
 
 const Project = (props: ProjectProps) => {
-  return (
-    <div className='p-5 bg-gray-200 border-2 border-gray-400 rounded-xl min-h-[24rem] hover:scale-[1.04] transition hover:shadow-2xl shadow-grey'>
+    return (
+        <div className='p-5 bg-gray-200 border-2 border-gray-400 mobile:rounded desktop:rounded-xl min-h-[24rem] desktop:hover:scale-[1.04] transition desktop:hover:shadow-2xl mobile:shadow shadow-grey'>
             <div className='flex justify-between px-6 py-3'>
                 <ImageIcon src={github_logo} href="" alt="" />
-                <ImageIcon src={playstore_logo} href="" alt=""/>
-                <ImageIcon src={browser_logo} href="" alt=""/>
+                <ImageIcon src={playstore_logo} href="" alt="" />
+                <ImageIcon src={browser_logo} href="" alt="" />
             </div>
-        <div className='font-bold'>
-            {props.heading}
+            <div className='font-bold mobile:text-xl'>
+                {props.heading}
+            </div>
+            <div className='text-justify text-base'>
+                {props.description}
+            </div>
         </div>
-        <div className='text-justify text-xl'>
-            {props.description}
-        </div>
-    </div>
-  )
+    )
 }
 
 export default Project

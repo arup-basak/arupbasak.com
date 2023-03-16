@@ -1,6 +1,7 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import NavBar from '@/components/NavBar'
+import SocialMediaIcons from '@/components/SocialMediaIcons'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -9,6 +10,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <NavBar />
         <div className='overflow-y-scroll w-full p-3'>
           <Component {...pageProps} />
+        </div>
+        <div className='desktop:hidden py-2'>
+          <SocialMediaIcons />
         </div>
       </div>
     </>

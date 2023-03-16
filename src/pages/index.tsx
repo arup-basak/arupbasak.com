@@ -27,18 +27,18 @@ const Home = ({ about }: HomeProps) => {
           <div className='absolute right-0 top-0'>
             {/* <Image src={arup_basak} height={700} width={700} alt="Arup Basak" /> */}
           </div>
-          <div className='text-8xl py-5 font-bold cursor-default'>
+          <div className='mobile:text-7xl desktop:text-8xl py-5 font-bold cursor-default'>
             {about.name.toUpperCase()}
           </div>
-          <div className='text-3xl'>
+          <div className='mobile:text-2xl desktop:text-3xl'>
             {about.title}
           </div>
-          <div className='py-10 w-3/5 text-justify'>
+          <div className='py-10 desktop:w-4/5 text-justify'>
             {about.about}
           </div>
         </div>
       </div>
-      <div className='grid grid-cols-4 gap-3 w-3/5 m-auto'>
+      <div className='grid mobile: grid-cols-1 desktop:grid-cols-4 gap-3 mobile:w-4/5 desktop:w-3/5 m-auto'>
         <Project
           heading={"Numlify"}
           description={"Numlify is a simple app that converts numbers to words and stores the results in an SQLite database."}
