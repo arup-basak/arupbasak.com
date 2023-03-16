@@ -16,7 +16,7 @@ const Project = (props: ProjectProps) => {
   return (
     <div className='p-5 bg-gray-200 border-2 border-gray-400 rounded-xl min-h-[24rem] hover:scale-[1.04] transition hover:shadow-2xl shadow-grey'>
             <div className='flex justify-between px-6 py-3'>
-                <ImageIcon src={github_logo} href="" alt=""/>
+                <ImageIcon src={github_logo} href="" alt="" />
                 <ImageIcon src={playstore_logo} href="" alt=""/>
                 <ImageIcon src={browser_logo} href="" alt=""/>
             </div>

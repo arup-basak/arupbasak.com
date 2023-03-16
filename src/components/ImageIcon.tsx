@@ -6,10 +6,11 @@ const ImageIcon = (props: {
     src: StaticImageData,
     href: string,
     alt: string
+    hoverEffect?: true|false
 }) => {
   const size = 25;
   return (
-    <div>
+    <div className='hover:scale-[1.10] transition'>
         <Link href={props.href} target="_blank">
             <Image src={props.src} alt={props.alt} height={size} width={size}/>
         </Link>

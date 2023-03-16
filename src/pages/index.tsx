@@ -3,7 +3,8 @@ import Head from 'next/head';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Project from '@/components/Project';
 import Image from 'next/image';
-// import arup_basak from '/public/arup-image.png'
+// import '@/styles/Home.module.css'
+import arup_basak from '/public/arup-image.png'
 
 type About = {
   name: string,
@@ -22,7 +23,7 @@ const Home = ({ about }: HomeProps) => {
         <title>{about.name}</title>
       </Head>
       <div className=''>
-        <div className='m-5 h-screen'>
+        <div className="m-5 h-screen" id="div">
           <div className='absolute right-0 top-0'>
             {/* <Image src={arup_basak} height={700} width={700} alt="Arup Basak" /> */}
           </div>

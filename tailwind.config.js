@@ -23,6 +23,11 @@ module.exports = {
         }
       }
     },
+    screens: {
+      'mobile': '414px',
+      'tablet': '640px',
+      'desktop': '1280px'
+    },
   },
   plugins: [],
 }

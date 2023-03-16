@@ -8,11 +8,10 @@ const NavButtons = (props: {
   return (
     <Link href={props.href}>
         <div 
-          className={`styles.nav_buttons select-none m-14 p-2 px-10 w-fit transition
-                   cursor-pointer text-2xl
-                    after:content-['→'] after:absolute after:opacity-0 hover:after:opacity-100 animate-slow-move
+          className={`styles.nav_buttons select-none p-12 w-fit transition
+                      cursor-pointer text-2xl
+                      after:content-['→'] after:absolute after:opacity-0 hover:after:opacity-100 animate-slow-move
                    `}
-          id='nav_buttons'
           >
             {props.innerText.toUpperCase()}
         </div>
