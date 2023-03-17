@@ -2,9 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Project from '@/components/Project';
-import Image from 'next/image';
 // import '@/styles/Home.module.css'
-import arup_basak from '/public/arup-image.png'
 
 type About = {
   name: string,
@@ -25,7 +23,6 @@ const Home = ({ about }: HomeProps) => {
       <div className=''>
         <div className="m-5 h-screen" id="div">
           <div className='absolute right-0 top-0'>
-            {/* <Image src={arup_basak} height={700} width={700} alt="Arup Basak" /> */}
           </div>
           <div className='mobile:text-7xl desktop:text-8xl py-5 font-bold cursor-default'>
             {about.name.toUpperCase()}
