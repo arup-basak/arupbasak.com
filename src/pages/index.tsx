@@ -2,7 +2,6 @@ import React from 'react';
 import Head from 'next/head';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Project from '@/components/Project';
-// import '@/styles/Home.module.css'
 
 type About = {
   name: string,
