@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Input from '@/components/Input'
 import Head from 'next/head'
 import { initializeApp } from "firebase/app";
 import { collection, addDoc, getFirestore } from 'firebase/firestore'
-// import Alert from '@/components/Alert';
 
 
 const firebaseConfig = {
@@ -18,27 +17,25 @@ const firebaseConfig = {
 
 
 const Contact = () => {
-  const [nameTxt, setName] = useState('') 
-  const [emlTxt, setEmail] = useState('') 
-  const [textareaText, setTextarea] = useState('')
-
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+
+  const name = useRef('')
+  const email = useRef('')
+
+  const [textareaText, setTextarea] = useState('')
 
   const handleClick = () => {
     try {
       addDoc(collection(db, 'messages'), {
-        name: nameTxt,
-        email: emlTxt,
+        name: name.current,
+        email: email.current,
         message: textareaText,
         time: new Date().toString()
       }).catch((e) => {
         console.log(e);
       }).then(
         () => {
-          setName('')
-          setEmail('')
-          setTextarea('')
           alert("Message Sending Successful");
         }
       );
@@ -52,18 +49,14 @@ const Contact = () => {
       <Head>
         <title>Connect with me</title>
       </Head>
-      {/* <Alert message="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum dignissimos ipsa alias."/> */}
-      
       <div className='desktop:grid desktop:grid-cols-[700px_1fr]'>
         <div className='mobile:text-2xl desktop:text-6xl desktop:py-5 font-bold cursor-default max-w-[500px] m-auto'>
           CONNECT WITH ME
         </div>
         <div id="textarea" className='w-[100%]'>
-          <input type="hidden" name="access_key" value="3146127c-ede8-4857-afdc-b4910ca75eb1" />
-          <Input type='text' id="name" placeholder='Name' value={nameTxt} />
-          <Input type='email' id="email" placeholder='Email' value={emlTxt} />
+          <Input type='text' id="name" placeholder='Name' onChange={(value) => name.current = value} />
+          <Input type='email' id="email" placeholder='Email' onChange={(value) => email.current = value} />
           <div>
-
             <textarea
               className="w-full p-6 bg-gray-100 outline-none resize-none"
               rows={12}
