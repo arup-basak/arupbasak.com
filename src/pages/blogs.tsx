@@ -10,66 +10,8 @@ function blogs() {
           Blogs
         </title>
       </Head>
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
-      <BlogComponent />
+      {/* <BlogComponent /> */}
+      Will Updated Soon
     </div>
   )
 }

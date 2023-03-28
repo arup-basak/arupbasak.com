@@ -3,7 +3,7 @@ import Input from '@/components/Input'
 import Head from 'next/head'
 import { initializeApp } from "firebase/app";
 import { collection, addDoc, getFirestore } from 'firebase/firestore'
-import Alert from '@/components/Alert';
+// import Alert from '@/components/Alert';
 
 
 const firebaseConfig = {
@@ -17,10 +17,10 @@ const firebaseConfig = {
 };
 
 
-const contact = () => {
+const Contact = () => {
   const [nameTxt, setName] = useState('') 
   const [emlTxt, setEmail] = useState('') 
-  const [textareaText, setTextarea] = useState('') 
+  const [textareaText, setTextarea] = useState('')
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
@@ -36,6 +36,9 @@ const contact = () => {
         console.log(e);
       }).then(
         () => {
+          setName('')
+          setEmail('')
+          setTextarea('')
           alert("Message Sending Successful");
         }
       );
@@ -49,7 +52,7 @@ const contact = () => {
       <Head>
         <title>Connect with me</title>
       </Head>
-      <Alert message="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum dignissimos ipsa alias."/>
+      {/* <Alert message="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum dignissimos ipsa alias."/> */}
       
       <div className='desktop:grid desktop:grid-cols-[700px_1fr]'>
         <div className='mobile:text-2xl desktop:text-6xl desktop:py-5 font-bold cursor-default max-w-[500px] m-auto'>
@@ -81,4 +84,4 @@ const contact = () => {
   )
 }
 
-export default contact
+export default Contact

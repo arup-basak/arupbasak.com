@@ -1,26 +1,12 @@
-import React from 'react';
-import ReactMarkdown from 'react-markdown'
+import React from 'react'
+import Image from 'next/image'
 
-class Example extends React.Component {
-    render() {
-        return (
-            <div>
-                <ReactMarkdown>
-                # Heading
-
-Some text
-
-- list item 1
-
-- list item 2
-
-- list item 3
-
-[My website](https://daily-dev-tips.com)
-                </ReactMarkdown>
-            </div>
-        );
-    }
+const example = () => {
+    return (
+        <>
+            
+        </>
+    )
 }
 
-export default Example;
+export default example
