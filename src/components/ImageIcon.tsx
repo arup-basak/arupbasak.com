@@ -16,13 +16,12 @@ const ImageIcon = (props: {
         scale: 1.2,
         transition: {delay: 0.3}
       }}
-
       initial={{
         y: 150
       }}
       animate={{
         y: 0,
-        transition: {delay: 0.2}
+        transition: {delay: 0.4}
       }}
       className=''>
       <Link href={props.href} target="_blank">
