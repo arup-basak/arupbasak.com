@@ -73,21 +73,8 @@ const Home = () => {
           </motion.div>
         </div>
       </div>
-      {/* <div className='grid mobile: grid-cols-1 desktop:grid-cols-4 gap-3 mobile:w-4/5 desktop:w-3/5 m-auto'>
-
-      </div> */}
     </div>
   );
 };
-
-// export const getStaticProps: GetStaticProps<{ about: About }> = async () => {
-//   const res = await fetch(`http://localhost:3000/api/about`);
-//   const about = await res.json();
-//   return {
-//     props: {
-//       about
-//     }
-//   };
-// };
 
 export default Home;
