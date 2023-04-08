@@ -46,3 +46,6 @@ db.sqlite3*
 
 # github
 /.github
+
+# Local Netlify folder
+.netlify
