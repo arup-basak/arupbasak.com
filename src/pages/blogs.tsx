@@ -1,5 +1,4 @@
 import React from 'react'
-import BlogComponent from '@/components/BlogComponent'
 import Head from 'next/head'
 
 function blogs() {
@@ -15,5 +14,6 @@ function blogs() {
     </div>
   )
 }
+
 
 export default blogs
