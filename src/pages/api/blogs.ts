@@ -10,8 +10,11 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<WithId<Data>[]>
 ): Promise<void> {
+
+    const dbURI = 'mongodb+srv://arupbasak:bhmpeJmXwE2YUGq@arupbasak-co-in.csn5c2c.mongodb.net/'
     try {
-        const client = await MongoClient.connect('mongodb+srv://arupbasak:bhmpeJmXwE2YUGq@arupbasak-co-in.csn5c2c.mongodb.net/test');
+        // const client = await MongoClient.connect(process.env.MONGODB_URI ?? "");
+        const client = await MongoClient.connect(dbURI);
         const db = client.db("sample_mflix");
 
         const movies = await db
