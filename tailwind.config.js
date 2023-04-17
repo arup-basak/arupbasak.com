@@ -10,15 +10,20 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
-        wiggle: {
+        wave: {
           '0%': {
-            left: 0,
+            transform: 'translateX(-10px)',
+            opacity: '0'
           },
-          '100%': {
-            left: 100
-          }
-        }
-      }
+          '100%': { 
+            transform: 'translateX(0)',
+            opacity: '1'
+           }
+        },
+      },
+      animation: {
+        'slow-move': 'wave 0.1s linear alternate',
+      },
     },
     screens: {
       'mobile': '0px',

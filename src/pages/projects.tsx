@@ -1,44 +1,19 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Project from '@/components/Project';
+import ProjectComponent from '@/components/ProjectComponent';
 import Head from 'next/head';
 
-// const data = [
-//   {
-//     "id": 0,
-//     "name": "Numlify",
-//     "description": "This is a App that converts number to words",
-//     "full-description": "This is a App that converts number to words",
-//     "links": [
-//       { "github": "aa" },
-//       { "playstore": "aa" }
-//     ]
-//   },
-//   {
-//     "id": 1,
-//     "name": "Numlify1",
-//     "description": "This is a App that converts number to words",
-//     "full-description": "This is a App that converts number to words",
-//     "links": [
-//       { "github": "aa" },
-//       { "playstore": "aa" }
-//     ]
-//   },
-//   {
-//     "id": 2,
-//     "name": "Numlify2",
-//     "description": "This is a App that converts number to words",
-//     "full-description": "This is a App that converts number to words",
-//     "links": [
-//       { "github": "aa" },
-//       { "playstore": "aa" }
-//     ]
-//   }
-// ]
+interface Project {
+  name: string,
+  github: string,
+  about: string
+}
 
-const Projects = () => {
-  const [selectedId, setSelectedId] = useState(0)
+interface ProjectsProps {
+  projects: Array<Project>
+}
 
+const Projects = ({ projects }: ProjectsProps) => {
   return (
     <>
       <Head>
@@ -46,26 +21,31 @@ const Projects = () => {
           Projects
         </title>
       </Head>
-      <>
+      <div className='grid grid-cols-3'>
+        {/* {
+          projects.map((project, i) => {
+            return <>
+              <ProjectComponent name={project.name} description={project.about} key={i} />
+            </>
+          })
+        } */}
         No Data available
-      </>
-      {/* {data.map(elem => {
-        return (
-          <motion.div onClick={() => setSelectedId(elem.id)}>
-            <div>{elem.name}</div>
-            <div>{elem.description}</div>
-          </motion.div>
-        )
-      })}
-      <AnimatePresence>
-        {selectedId && <motion.div layoutId={selectedId.toString()}>
-          <motion.div>{data[selectedId]['name']}</motion.div>
-          <motion.div>{data[selectedId]['full-description']}</motion.div>
-          <motion.button onClick={() => setSelectedId(-1)} />
-        </motion.div>}
-      </AnimatePresence> */}
+      </div>
     </>
   );
 };
+
+export async function getServerSideProps() {
+  const postsResponse = await fetch("http://localhost:3000/api/projects");
+  const projects = await postsResponse.json();
+  return {
+    props: {
+      projects
+    },
+  }
+}
+
+
+
 
 export default Projects;

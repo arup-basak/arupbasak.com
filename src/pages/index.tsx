@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import Project from '@/components/Project';
+import Project from '@/components/ProjectComponent';
 import { motion } from 'framer-motion'
 
 type About = {
