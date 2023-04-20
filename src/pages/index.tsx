@@ -36,7 +36,7 @@ const Home = () => {
                 duration: 0.3
               }
             }}
-            className='mobile:text-7xl desktop:text-8xl py-5 font-bold cursor-default'>
+            className='mobile:text-7xl desktop:text-8xl py-5 font-bold cursor-default tracking-wider'>
             ARUP BASAK
           </motion.div>
           <motion.div

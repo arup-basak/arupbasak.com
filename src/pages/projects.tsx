@@ -1,19 +1,30 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
 import ProjectComponent from '@/components/ProjectComponent';
 import Head from 'next/head';
+import useSWR from 'swr';
 
 interface Project {
-  name: string,
-  github: string,
-  about: string
+  name: string;
+  about: string;
 }
 
-interface ProjectsProps {
-  projects: Array<Project>
-}
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const Projects = ({ projects }: ProjectsProps) => {
+const Projects = () => {
+  const { data, error, isLoading } = useSWR<Project[]>('/api/projects', fetcher);
+
+  if (isLoading) {
+    return <>Loading...</>
+  }
+
+  if (error) {
+    return <>Error</>
+  }
+
+  if (!data) {
+    return <>No data found.</>
+  }
+
   return (
     <>
       <Head>
@@ -22,30 +33,12 @@ const Projects = ({ projects }: ProjectsProps) => {
         </title>
       </Head>
       <div className='grid grid-cols-3'>
-        {/* {
-          projects.map((project, i) => {
-            return <>
-              <ProjectComponent name={project.name} description={project.about} key={i} />
-            </>
-          })
-        } */}
-        No Data available
+        {data.map((project) => (
+          <ProjectComponent key={project.name} name={project.name} description={project.about} />
+        ))}
       </div>
     </>
   );
 };
-
-export async function getServerSideProps() {
-  const postsResponse = await fetch("http://localhost:3000/api/projects");
-  const projects = await postsResponse.json();
-  return {
-    props: {
-      projects
-    },
-  }
-}
-
-
-
 
 export default Projects;
