@@ -1,35 +1,26 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { MongoClient } from 'mongodb';
+import type { WithId } from 'mongodb';
 
-type Data = {
-    name: string,
-    github: string,
-    about: string
-}
-
-export default function handler(
+export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<Data[]>
-) {
-    res.status(200).json(
-        [{
-            name: 'Numlify',
-            github: "https://github.com/arup-basak/Numlify",
-            about: ""
-        },
-        {
-            name: 'arupbasak.co.in',
-            github: "https://github.com/arup-basak/arupbasak-co-in",
-            about: ""
-        },
-        {
-            name: 'Weather',
-            github: "https://github.com/arup-basak/weather",
-            about: ""
-        },
-        {
-            name: 'NoteX',
-            github: "https://github.com/arup-basak/notex",
-            about: ""
-        }]
-    )
+    res: NextApiResponse<any>
+): Promise<void> {
+
+    const URI: any = process.env.MONGO_URI
+    try {
+        const client = await MongoClient.connect(URI);
+        const db = client.db("site_loading_data");
+
+        const movies = await db
+            .collection<WithId<Project>>("projects")
+            .find({})
+            .sort({ metacritic: -1 })
+            .toArray();
+
+        res.status(200).json(movies);
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ name: "Internal server error" });
+    }
 }

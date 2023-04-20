@@ -2,26 +2,20 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { MongoClient } from 'mongodb';
 import type { WithId } from 'mongodb';
 
-type Data = {
-    name: string;
-};
-
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ): Promise<void> {
 
-    const dbURI = 'mongodb+srv://arupbasak:bhmpeJmXwE2YUGq@arupbasak-co-in.csn5c2c.mongodb.net/?retryWrites=true&w=majority'
+    const URI: any = process.env.MONGO_URI
     try {
-        // const client = await MongoClient.connect(process.env.MONGODB_URI ?? "");
-        const client = await MongoClient.connect(dbURI);
-        const db = client.db("sample_mflix");
+        const client = await MongoClient.connect(URI);
+        const db = client.db("site_loading_data");
 
         const movies = await db
-            .collection<WithId<Data>>("movies")
+            .collection<WithId<Project>>("blogs")
             .find({})
             .sort({ metacritic: -1 })
-            .limit(10)
             .toArray();
 
         res.status(200).json(movies);

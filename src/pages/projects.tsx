@@ -1,16 +1,13 @@
-import React from 'react';
-import ProjectComponent from '@/components/ProjectComponent';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion'
 import Head from 'next/head';
 import useSWR from 'swr';
-
-interface Project {
-  name: string;
-  about: string;
-}
+import MaximizeProjectComponent from '@/components/MaximizeProjectComponent';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Projects = () => {
+  const [selectedId, setSelectedId] = useState('0')
   const { data, error, isLoading } = useSWR<Project[]>('/api/projects', fetcher);
 
   if (isLoading) {
@@ -32,11 +29,27 @@ const Projects = () => {
           Projects
         </title>
       </Head>
-      <div className='grid grid-cols-3'>
-        {data.map((project) => (
-          <ProjectComponent key={project.name} name={project.name} description={project.about} />
-        ))}
-      </div>
+      <>
+        <b>Currently On Testing</b>
+        <div className='grid grid-cols-3'>
+          {data.map((project, i) => (
+            <motion.div
+              className='border-blue-400 border-2 p-2 m-2 rounded cursor-pointer'
+              layoutId={i.toString()}
+              onClick={() => setSelectedId(i.toString())}>
+              <motion.h5>{project.name}</motion.h5>
+              <motion.h2>{project.short_desc}</motion.h2>
+            </motion.div>
+          ))}
+          <AnimatePresence>
+            {selectedId == '' && (
+              <motion.div layoutId={selectedId}>
+                <MaximizeProjectComponent project={data[parseInt(selectedId)]} onClick={() => setSelectedId('')} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </>
     </>
   );
 };
