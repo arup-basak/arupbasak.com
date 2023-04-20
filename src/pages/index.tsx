@@ -9,10 +9,6 @@ type About = {
   about: string
 };
 
-type HomeProps = {
-  about: About;
-};
-
 const Home = () => {
   return (
     <div>

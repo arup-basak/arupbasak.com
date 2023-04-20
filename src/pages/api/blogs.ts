@@ -8,10 +8,10 @@ type Data = {
 
 export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<WithId<Data>[]>
+    res: NextApiResponse<any>
 ): Promise<void> {
 
-    const dbURI = 'mongodb+srv://arupbasak:bhmpeJmXwE2YUGq@arupbasak-co-in.csn5c2c.mongodb.net/'
+    const dbURI = 'mongodb+srv://arupbasak:bhmpeJmXwE2YUGq@arupbasak-co-in.csn5c2c.mongodb.net/?retryWrites=true&w=majority'
     try {
         // const client = await MongoClient.connect(process.env.MONGODB_URI ?? "");
         const client = await MongoClient.connect(dbURI);
@@ -27,6 +27,6 @@ export default async function handler(
         res.status(200).json(movies);
     } catch (e) {
         console.error(e);
-        // res.status(500).json({ name: "Internal server error" });
+        res.status(500).json({ name: "Internal server error" });
     }
 }
