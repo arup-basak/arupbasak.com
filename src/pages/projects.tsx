@@ -9,19 +9,19 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Projects = () => {
   const [selectedId, setSelectedId] = useState('0')
-  // const { data, error, isLoading } = useSWR<Project[]>('/api/projects', fetcher);
+  const { data, error, isLoading } = useSWR<Project[]>('/api/projects', fetcher);
 
-  // if (isLoading) {
-  //   return <>Loading...</>
-  // }
+  if (isLoading) {
+    return <>Loading...</>
+  }
 
-  // if (error) {
-  //   return <>Error</>
-  // }
+  if (error) {
+    return <>Error</>
+  }
 
-  // if (!data) {
-  //   return <>No data found.</>
-  // }
+  if (!data) {
+    return <>No data found.</>
+  }
 
   return (
     <>
