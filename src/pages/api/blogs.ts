@@ -13,7 +13,7 @@ export default async function handler(
         const db = client.db("site_loading_data");
 
         const movies = await db
-            .collection<WithId<Project>>("blogs")
+            .collection<WithId<any>>("blogs")
             .find({})
             .sort({ metacritic: -1 })
             .toArray();

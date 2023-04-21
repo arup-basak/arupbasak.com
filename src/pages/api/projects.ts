@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { MongoClient } from 'mongodb';
 import type { WithId } from 'mongodb';
+import { Project } from '@/interface/project';
 
 export default async function handler(
     req: NextApiRequest,
