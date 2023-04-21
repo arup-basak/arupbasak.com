@@ -1,34 +1,49 @@
-import React from 'react'
-import Image, { StaticImageData } from 'next/image'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
+import React from 'react';
+import Image, { StaticImageData } from 'next/image';
+import { motion, MotionProps } from 'framer-motion';
+import Link from 'next/link';
 
-const ImageIcon = (props: {
-  src: StaticImageData,
-  href: string,
-  alt: string
-  hoverEffect?: true | false
-}) => {
-  const size = 25;
-  return (
-    <motion.div
-      whileHover={{
-        scale: 1.2,
-        transition: {delay: 0.3}
-      }}
-      initial={{
-        y: 150
-      }}
-      animate={{
-        y: 0,
-        transition: {delay: 0.4}
-      }}
-      className=''>
-      <Link href={props.href} target="_blank">
-        <Image src={props.src} alt={props.alt} height={size} width={size} />
-      </Link>
-    </motion.div>
-  )
+interface ImageIconProps {
+  src: StaticImageData;
+  href?: string;
+  alt?: string;
+  hoverEffect?: boolean;
+  size?: number;
+  motionProps?: MotionProps;
+  onClick?: () => void
 }
 
-export default ImageIcon
+const ImageIcon: React.FC<ImageIconProps> = ({
+  src,
+  href,
+  alt = '',
+  hoverEffect = true,
+  size = 25,
+  motionProps = {},
+  onClick
+}) => {
+  const linkContent = href ? (
+    <Link href={href} target="_blank">
+      <Image src={src} alt={alt} height={size} width={size} onClick={() => onClick}/>
+    </Link>
+  ) : (
+    <Image src={src} alt={alt} height={size} width={size} />
+  );
+
+  return (
+    <motion.div
+      whileHover={
+        hoverEffect
+          ? {
+            scale: 1.2,
+            transition: { delay: 0.3 },
+          } : {}
+      }
+      {...motionProps}
+    >
+      {linkContent}
+    </motion.div>
+  );
+};
+
+export default ImageIcon;

@@ -4,12 +4,29 @@ import Head from 'next/head';
 import useSWR from 'swr';
 import MaximizeProjectComponent from '@/components/MaximizeProjectComponent';
 import { Project } from '@/interface/project';
+import MinimizeProjectComponent from '@/components/MinimizeProjectComponent';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Projects = () => {
-  const [selectedId, setSelectedId] = useState('0')
+  const [selectedId, setSelectedId] = useState('')
+  const [projectBlur, setProjectBlur] = useState(false)
+
   const { data, error, isLoading } = useSWR<Project[]>('/api/projects', fetcher);
+
+  const handleProjectClick = (i: number) => {
+    if (selectedId == '') {
+      setProjectBlur(true)
+      setSelectedId(i.toString())
+    }
+  }
+
+  const handleProjectExitClick = () => {
+    if (selectedId != '') {
+      setProjectBlur(false)
+      setSelectedId('')
+    }
+  }
 
   if (isLoading) {
     return <>Loading...</>
@@ -31,28 +48,30 @@ const Projects = () => {
         </title>
       </Head>
       <>
-        <b>Currently On Testing</b>
-        <div className='grid grid-cols-3'>
-          {data.map((project, i) => (
-            <motion.div
-              key={i}
-              className='border-blue-400 border-2 p-2 m-2 rounded cursor-pointer'
-              layoutId={i.toString()}
-              onClick={() => setSelectedId(i.toString())}>
-              <motion.h5>{project.name}</motion.h5>
-              <motion.h2>{project.short_desc}</motion.h2>
-            </motion.div>
-          ))}
-          {/* <AnimatePresence>
-            {selectedId == '' && (
+        <b className='text-red-500'>Currently On Testing</b>
+        <div className=''>
+          <div className={`grid grid-cols-3 ${projectBlur ? 'opacity-5' : 'opacity-100'}`}>
+            {data.map((project, i) => (
+              <MinimizeProjectComponent 
+                project={project} 
+                key={project._id} 
+                index={i}
+                handleClick={() => handleProjectClick(i)} />
+            ))}
+          </div>
+          <AnimatePresence>
+            {selectedId != '' && (
               <motion.div layoutId={selectedId}>
-                <MaximizeProjectComponent project={data[parseInt(selectedId)]} onClick={() => setSelectedId('')} />
+                <MaximizeProjectComponent
+                  project={data[parseInt(selectedId)]}
+                  onClick={() => handleProjectExitClick()} />
               </motion.div>
             )}
-          </AnimatePresence>  */}
+          </AnimatePresence>
         </div>
       </>
     </>
+
   );
 };
 
