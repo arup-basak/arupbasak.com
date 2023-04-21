@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { Project } from '@/interface/project'
 
 const MaximizeProjectComponent = (props: {
     project: Project,
