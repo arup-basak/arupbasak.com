@@ -32,7 +32,7 @@ const Projects = () => {
       </Head>
       <>
         <b>Currently On Testing</b>
-        {/* <div className='grid grid-cols-3'>
+        <div className='grid grid-cols-3'>
           {data.map((project, i) => (
             <motion.div
               key={i}
@@ -49,8 +49,8 @@ const Projects = () => {
                 <MaximizeProjectComponent project={data[parseInt(selectedId)]} onClick={() => setSelectedId('')} />
               </motion.div>
             )}
-          </AnimatePresence> 
-        </div> */}
+          </AnimatePresence>  */}
+        </div>
       </>
     </>
   );
