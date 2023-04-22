@@ -10,7 +10,8 @@ interface ImageIconProps {
   hoverEffect?: boolean;
   size?: number;
   motionProps?: MotionProps;
-  hidden? : boolean
+  hidden?: boolean,
+  className?: string
   onClick?: () => void
 }
 
@@ -18,6 +19,7 @@ const ImageIcon: React.FC<ImageIconProps> = ({
   src,
   href,
   alt = '',
+  className = '',
   hoverEffect = true,
   size = 25,
   hidden = false,
@@ -26,10 +28,22 @@ const ImageIcon: React.FC<ImageIconProps> = ({
 }) => {
   const linkContent = href ? (
     <Link href={href} target="_blank">
-      <Image src={src} alt={alt} height={size} width={size} onClick={() => onClick}/>
+      <Image
+        src={src}
+        alt={alt}
+        height={size}
+        width={size}
+        className={className}
+        onClick={onClick} />
     </Link>
   ) : (
-    <Image src={src} alt={alt} height={size} width={size} />
+    <Image
+      src={src}
+      alt={alt}
+      height={size}
+      width={size}
+      className={className}
+      onClick={onClick} />
   );
 
   return (
@@ -42,7 +56,7 @@ const ImageIcon: React.FC<ImageIconProps> = ({
           } : {}
       }
       {...motionProps}
-      className={`${hidden ? 'hidden': 'block'}`}
+      className={`${hidden ? 'hidden' : 'block'}`}
     >
       {linkContent}
     </motion.div>
