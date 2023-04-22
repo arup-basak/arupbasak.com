@@ -15,19 +15,22 @@ const ProjectLinks = ({links}: { links: ProjectLink }) => {
                 alt={'browser_icon'}
                 hoverEffect={true} 
                 href={links.hosted_site}
+                hidden={links.hosted_site ? false : true}
                 />
             <ImageIcon 
                 src={playstore_logo} 
                 alt={'playstore'}
                 hoverEffect={true} 
-                href={links.hosted_site}
+                href={links.playstore}
+                hidden={links.playstore ? false : true}
                 size={22}
                 />
             <ImageIcon 
                 src={github_logo} 
                 alt={'github'}
                 hoverEffect={true} 
-                href={links.hosted_site}
+                href={links.github}
+                hidden={links.github ? false : true}
                 />
         </div>
     )

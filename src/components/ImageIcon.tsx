@@ -10,6 +10,7 @@ interface ImageIconProps {
   hoverEffect?: boolean;
   size?: number;
   motionProps?: MotionProps;
+  hidden? : boolean
   onClick?: () => void
 }
 
@@ -19,6 +20,7 @@ const ImageIcon: React.FC<ImageIconProps> = ({
   alt = '',
   hoverEffect = true,
   size = 25,
+  hidden = false,
   motionProps = {},
   onClick
 }) => {
@@ -40,6 +42,7 @@ const ImageIcon: React.FC<ImageIconProps> = ({
           } : {}
       }
       {...motionProps}
+      className={`${hidden ? 'hidden': 'block'}`}
     >
       {linkContent}
     </motion.div>
