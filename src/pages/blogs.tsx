@@ -15,7 +15,7 @@ interface Blog {
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-function blogs() {
+function Blogs() {
   const { data, error, isLoading } = useSWR<Blog[]>('/api/blogs', fetcher);
 
   if (isLoading) {
@@ -51,4 +51,4 @@ function blogs() {
 }
 
 
-export default blogs
+export default Blogs
