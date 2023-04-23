@@ -14,7 +14,7 @@ const BlogComponent = (props: {
     blog: Blog
 }) => {
   return (
-    <div className='rounded-xl bg-gray-300 p-2 m-2 transition cursor-pointer'>
+    <div className='rounded-xl bg-gray-300 p-2 m-2 cursor-pointer'>
         <Link href={`blog/${props.blog.pid}`}>
             <div>
                 {props.blog.heading}

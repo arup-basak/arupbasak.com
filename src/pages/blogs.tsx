@@ -31,21 +31,20 @@ function Blogs() {
   }
 
   return (
-    <div className='grid grid-cols-6 gap-3 w-max'>
+    <div className=''>
       <Head>
         <title>
           Blogs
         </title>
       </Head>
-      <>
-      
-        <div className='flex flex-col'>
-          All Data are currently testing
+      <div className='flex flex-col'>
+        All Data are currently testing
+        <div className='grid desktop:grid-cols-2 mobile:grid-cols-1'>
           {data.map((item, i) => {
             return <BlogComponent blog={item} key={i} />
           })}
         </div>
-      </>
+      </div>
     </div>
   )
 }
