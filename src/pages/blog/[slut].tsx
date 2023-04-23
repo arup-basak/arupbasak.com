@@ -48,10 +48,11 @@ const Post = () => {
       <Head>
         <title>{pid}</title>
       </Head>
-      <div className='text-justify desktop:w-3/5 mobile:w-4/5 m-auto '>
-        <ReactMarkdown remarkPlugins={[gfm]}>
+      <div className='text-justify desktop:w-3/5 mobile:w-4/5 m-auto text-red-500'>
+        Currently All are in Testing
+        {/* <ReactMarkdown remarkPlugins={[gfm]}>
           {data}
-        </ReactMarkdown>
+        </ReactMarkdown> */}
       </div>
     </>
   )

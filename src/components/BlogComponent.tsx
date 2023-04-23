@@ -1,21 +1,26 @@
 import Link from 'next/link'
 import React from 'react'
 
+interface Blog {
+    _id: any,
+    heading: string,
+    pid: string,
+    data: string,
+    time: string,
+    writer: string
+  }
+
 const BlogComponent = (props: {
-    heading?: string,
-    context?: string,
-    link?: string
+    blog: Blog
 }) => {
   return (
-    <div className='rounded-xl bg-gray-300 p-3 transition cursor-pointer'>
-        <Link href={"/"}>
+    <div className='rounded-xl bg-gray-300 p-2 m-2 transition cursor-pointer'>
+        <Link href={`blog/${props.blog.pid}`}>
             <div>
-                {/* {props.heading} */}
-                Lorem ipsum
+                {props.blog.heading}
             </div>
             <div className='text-lg'>
-                {/* {props.context} */}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quis blanditiis nobis?
+                {props.blog.data}
             </div>
         </Link>
     </div>
