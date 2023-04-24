@@ -7,7 +7,7 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ): Promise<void> {
-
+    
     const URI: any = process.env.MONGO_URI
     try {
         const client = await MongoClient.connect(URI);

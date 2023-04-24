@@ -5,6 +5,7 @@ import useSWR from 'swr';
 import MaximizeProjectComponent from '@/components/MaximizeProjectComponent';
 import { Project } from '@/interface/project';
 import MinimizeProjectComponent from '@/components/MinimizeProjectComponent';
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -50,15 +51,21 @@ const Projects = () => {
       <>
         <b className='text-red-500'>Currently On Testing</b>
         <div className=''>
-          <div className={`grid grid-cols-3 ${projectBlur ? 'opacity-5' : 'opacity-100'}`}>
-            {data.map((project, i) => (
-              <MinimizeProjectComponent 
-                project={project} 
-                key={project._id} 
-                index={i}
-                handleClick={() => handleProjectClick(i)} />
-            ))}
-          </div>
+          <ResponsiveMasonry
+          columnsCountBreakPoints={{350: 1, 500: 3, 1200: 4}}
+            >
+            <Masonry>
+              {data.map((project, i) => (
+                <MinimizeProjectComponent
+                  project={project}
+                  key={project._id}
+                  index={i}
+                  handleClick={() => handleProjectClick(i)} />
+              ))}
+            </Masonry>
+          </ResponsiveMasonry>
+          {/* <div className={`grid grid-cols-3 ${projectBlur ? 'opacity-5' : 'opacity-100'}`}> */}
+          {/* </div> */}
           <AnimatePresence>
             {selectedId != '' && (
               <motion.div layoutId={selectedId}>
