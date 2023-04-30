@@ -1,9 +1,8 @@
 import React from 'react'
 import { ProjectLink } from '@/interface/project'
-import Link from 'next/link'
-import github_logo from '/public/github-logo.png'
-import browser_icon from '/public/browser-icon.png'
-import playstore_logo from '/public/playstore-logo.png'
+import github_logo from '/public/github-logo.svg'
+import browser_icon from '/public/browser-icon.svg'
+import playstore_logo from '/public/playstore-logo.svg'
 import ImageIcon from './ImageIcon'
 
 const ProjectLinks = ({links}: { links: ProjectLink }) => {

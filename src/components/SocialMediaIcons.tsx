@@ -1,9 +1,9 @@
 import React from 'react'
 import ImageIcon from './ImageIcon'
-import github_logo from '/public/github-logo.png'
-import linkedin_logo from '/public/linkedin-logo.png'
-import instagram_logo from '/public/instagram-logo.png'
-import twitter_logo from '/public/twitter-logo.png'
+import github_logo from '/public/github-logo.svg'
+import linkedin_logo from '/public/linkedin-logo.svg'
+import instagram_logo from '/public/instagram-logo.svg'
+import twitter_logo from '/public/twitter-logo.svg'
 import { motion } from 'framer-motion'
 
 const SocialMediaIcons = () => {

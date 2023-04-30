@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Project } from '@/interface/project'
-import cancel_icon from '/public/cancel-icon.png'
+import cancel_icon from '/public/cancel-icon.svg'
 import ImageIcon from './ImageIcon'
 
 const MaximizeProjectComponent = (props: {
