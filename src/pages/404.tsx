@@ -1,4 +1,4 @@
-import not_found from 'public/not-found.png'
+import not_found from 'public/not-found.svg'
 import Image from 'next/image';
 import Head from 'next/head';
 
