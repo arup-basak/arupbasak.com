@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion'
 import Head from 'next/head';
-import useSWR from 'swr';
 import MaximizeProjectComponent from '@/components/MaximizeProjectComponent';
-import { Project } from '@/interface/project';
+import { Project, ProjectLink } from '@/interface/project';
 import MinimizeProjectComponent from '@/components/MinimizeProjectComponent';
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
 const Projects = () => {
   const [selectedId, setSelectedId] = useState('')
+  const [data, setData] = useState<Project[]>([])
   const [projectBlur, setProjectBlur] = useState(false)
-
-  const { data, error, isLoading } = useSWR<Project[]>('/api/projects', fetcher);
 
   const handleProjectClick = (i: number) => {
     if (selectedId == '') {
@@ -29,17 +25,19 @@ const Projects = () => {
     }
   }
 
-  if (isLoading) {
-    return <>Loading...</>
-  }
+  useEffect(() => {
+    const getBlog = async () => {
+      try {
+        const response = await fetch('/api/projects');
+        const responseData = await response.json();
+        setData(responseData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  if (error) {
-    return <>Error</>
-  }
-
-  if (!data) {
-    return <>No data found.</>
-  }
+    getBlog();
+  }, []);
 
   return (
     <>
@@ -52,8 +50,8 @@ const Projects = () => {
         <b className='text-red-500'>Currently On Testing</b>
         <div className=''>
           <ResponsiveMasonry
-          columnsCountBreakPoints={{350: 1, 500: 3, 1200: 4}}
-            >
+            columnsCountBreakPoints={{ 350: 1, 500: 3, 1200: 4 }}
+          >
             <Masonry>
               {data.map((project, i) => (
                 <MinimizeProjectComponent
@@ -64,8 +62,6 @@ const Projects = () => {
               ))}
             </Masonry>
           </ResponsiveMasonry>
-          {/* <div className={`grid grid-cols-3 ${projectBlur ? 'opacity-5' : 'opacity-100'}`}> */}
-          {/* </div> */}
           <AnimatePresence>
             {selectedId != '' && (
               <motion.div layoutId={selectedId}>
@@ -78,7 +74,6 @@ const Projects = () => {
         </div>
       </>
     </>
-
   );
 };
 

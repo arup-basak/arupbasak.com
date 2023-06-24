@@ -1,34 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head'
-import useSWR from 'swr';
 import BlogComponent from '@/components/BlogComponent';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { Blog } from '@/interface/blog';
 
-interface Blog {
-  _id: any,
-  heading: string,
-  pid: string,
-  data: string,
-  time: string,
-  writer: string
-}
+const Blogs = () => {
+  const [data, setData] = useState<Blog[]>([])
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  useEffect(() => {
+    const getBlog = async () => {
+      try {
+        const response = await fetch('/api/blogs');
+        const responseData = await response.json();
+        setData(responseData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-function Blogs() {
-  const { data, error, isLoading } = useSWR<Blog[]>('/api/blogs', fetcher);
-
-  if (isLoading) {
-    return <>Loading...</>
-  }
-
-  if (error) {
-    return <>Error</>
-  }
-
-  if (!data) {
-    return <>No data found.</>
-  }
+    getBlog();
+  }, []);
 
   return (
     <div className=''>
@@ -40,9 +30,9 @@ function Blogs() {
       <div className='flex flex-col'>
         All Data are currently testing
         <div className='grid desktop:grid-cols-2 mobile:grid-cols-1'>
-          {data.map((item, i) => {
-            return <BlogComponent blog={item} key={i} />
-          })}
+          {data.map((item: Blog) => (
+            <BlogComponent blog={item} key={item._id} />
+          ))}
         </div>
       </div>
     </div>

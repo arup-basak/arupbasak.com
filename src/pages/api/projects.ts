@@ -1,25 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { MongoClient } from 'mongodb';
-import type { WithId } from 'mongodb';
-import { Project } from '@/interface/project';
+import mongoose from 'mongoose';
+import blogSchema from '@/schemas/blog.schema';
 
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ): Promise<void> {
-    
+
     const URI: any = process.env.MONGO_URI
+
     try {
-        const client = await MongoClient.connect(URI);
-        const db = client.db("site_loading_data");
+        await mongoose.connect(URI)
 
-        const movies = await db
-            .collection<WithId<Project>>("projects")
-            .find({})
-            .sort({ metacritic: -1 })
-            .toArray();
+        const model = mongoose.models.projects || mongoose.model("projects", blogSchema)
 
-        res.status(200).json(movies);
+        const jsonData = await model.find({})
+
+        res.status(200).json(jsonData);
     } catch (e) {
         console.error(e);
         res.status(500).json({ name: "Internal server error" });

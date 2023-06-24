@@ -8,27 +8,24 @@ const Post = () => {
   const { pid } = router.query;
 
   const [data, setData] = useState<Blog>({
-    _id: "string",
-    heading: "string",
-    pid: "string",
-    data: "string",
-    time: "string",
-    writer: "string"
+    _id: "",
+    heading: "",
+    pid: "",
+    data: "",
+    time: "",
+    writer: ""
   });
 
   useEffect(() => {
-    const sendReq = async () => {
+    async () => {
       try {
         const response = await fetch(`/api/blog/${pid}`);
         const responseData = await response.json();
         setData(responseData);
-        console.log(responseData)
       } catch (error) {
         console.log(error);
       }
     };
-
-    sendReq();
   }, [pid]);
 
   return (

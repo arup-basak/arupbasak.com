@@ -9,17 +9,19 @@ const MaximizeProjectComponent = (props: {
     onClick: () => void
 }) => {
     return (
-        <div className='border-blue-500 border-2 p-2 rounded'>
-            <ImageIcon
-                src={cancel_icon}
-                alt={'cancel-icon'}
-                hoverEffect={false}
-                onClick={props.onClick}
-                className='cursor-pointer'
-            />
-            <motion.h5>{props.project.name}</motion.h5>
-            <motion.h2>{props.project.long_desc}</motion.h2>
-        </div>
+        // <div className='fixed flex justify-center h-screen w-full'>
+            <div className='border-blue-500 border-2 p-2 rounded w-fit h-fit'>
+                <ImageIcon
+                    src={cancel_icon}
+                    alt={'cancel-icon'}
+                    hoverEffect={false}
+                    onClick={props.onClick}
+                    className='cursor-pointer'
+                />
+                <motion.h5>{props.project.name}</motion.h5>
+                <motion.h2>{props.project.long_desc}</motion.h2>
+            </div>
+        //  </div>
     )
 }
 
