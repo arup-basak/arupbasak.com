@@ -1,33 +1,12 @@
-import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
-import { Blog } from '@/interface/blog'
+import { GetServerSideProps, NextPage } from 'next';
+import { Blog } from '@/interface/blog';
 
-const Post = () => {
-  const router = useRouter();
-  const { pid } = router.query;
+interface PostProps {
+  data: Blog;
+}
 
-  const [data, setData] = useState<Blog>({
-    _id: "",
-    heading: "",
-    pid: "",
-    data: "",
-    time: "",
-    writer: ""
-  });
-
-  useEffect(() => {
-    async () => {
-      try {
-        const response = await fetch(`/api/blog/${pid}`);
-        const responseData = await response.json();
-        setData(responseData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }, [pid]);
-
+const Post: NextPage<PostProps> = ({ data }) => {
   return (
     <>
       <Head>
@@ -38,6 +17,37 @@ const Post = () => {
       </div>
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps<PostProps> = async (context) => {
+  const { pid } = context.query;
+
+  try {
+    const response = await fetch(`https://arupbasak.com/api/blog/${pid}`);
+    const responseData = await response.json();
+    const data: Blog = responseData;
+
+    return {
+      props: {
+        data,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+
+    return {
+      props: {
+        data: {
+          _id: "",
+          heading: "",
+          pid: "",
+          data: "",
+          time: "",
+          writer: ""
+        },
+      },
+    };
+  }
 };
 
 export default Post;
