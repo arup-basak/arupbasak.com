@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import NavBar from '@/components/NavBar'
 import SocialMediaIcons from '@/components/SocialMediaIcons'
 import { Playfair_Display } from 'next/font/google'
+import { GoogleAnalytics } from "nextjs-google-analytics";
 
 const playfair = Playfair_Display ({ 
   subsets: ['latin'],
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className={`overflow-y-hidden h-screen flex mobile:flex-col mobile:justify-between desktop:flex-row desktop:text-2xl mobile:text-sm ${playfair.className}`}>
         <NavBar />
         <div className='overflow-y-scroll w-full p-3'>
+          <GoogleAnalytics trackPageViews />
           <Component {...pageProps} />
         </div>
         <div className='desktop:hidden py-2'>
