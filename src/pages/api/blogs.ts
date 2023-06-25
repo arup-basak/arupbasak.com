@@ -1,20 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import mongoose from 'mongoose';
+import {model, models} from 'mongoose';
 import blogSchema from '@/schemas/blog.schema';
+import connectDB from '@/lib/mongo';
 
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ): Promise<void> {
-
-    const URI: any = process.env.MONGO_URI
-
+    connectDB()
     try {
-        await mongoose.connect(URI)
+        const myModel = models.blogs || model("blogs", blogSchema)
 
-        const model = mongoose.models.blogs || mongoose.model("blogs", blogSchema)
-
-        const jsonData = await model.find({})
+        const jsonData = await myModel.find({})
 
         res.status(200).json(jsonData);
     } catch (e) {

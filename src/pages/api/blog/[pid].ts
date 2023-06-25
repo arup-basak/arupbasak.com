@@ -1,25 +1,23 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import mongoose from 'mongoose';
+import { model, models } from 'mongoose';
 import blogSchema from '@/schemas/blog.schema';
+import connectDB from '@/lib/mongo';
 
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ): Promise<void> {
     const { pid } = req.query
-
-    const URI: any = process.env.MONGO_URI
+    connectDB()
 
     try {
-        await mongoose.connect(URI)
+        const myModel = models.blogs || model("blogs", blogSchema)
 
-        const model = mongoose.models.blogs || mongoose.model("blogs", blogSchema)
-
-        const jsonData = await model.findOne({ "pid": pid })
-        if(jsonData)
+        const jsonData = await myModel.findOne({ "pid": pid })
+        if (jsonData)
             res.status(200).json(jsonData);
         else
-            res.status(502).json({"message": "No Data"});
+            res.status(502).json({ "message": "No Data" });
     } catch (e) {
         console.error(e);
         res.status(500).json({ name: "Internal server error" });
